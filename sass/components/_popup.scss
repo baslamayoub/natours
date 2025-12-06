@@ -1,0 +1,94 @@
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+  background-color: rgba($color-black, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+
+  &__content {
+    width: 75%;
+    height: 50rem;
+    background-color: $color-white;
+    @include centerElment;
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+    border-radius: 3px;
+    display: table;
+    overflow: hidden;
+    transform: translate(-50%, -50%) scale(0.25);
+    transition: all 0.4s 0.2s;
+    @include respond(tab-port){
+      width: 90%;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__left {
+    width: 33.33333333%;
+    display: table-cell;
+    @include respond(tab-port){
+      display: flex;
+      width: 50%;
+    }
+  }
+  &__right {
+    width: 66.66666667%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+    @include respond(tab-port){
+      width: 100%;
+      padding: 1rem 2rem;
+    }
+  }
+  &__img {
+    width: 100%;
+    display: block;
+  }
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid $color-white-light;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  &:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  &:target &__content {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark-3;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+      line-height: 1;
+    }
+    &:hover {
+      color: $color-primary
+    }
+  }
+}
